@@ -14,6 +14,7 @@ export default function Home() {
         />
       
       <h1 className="text-4xl font-bold">占いサイトへようこそ！</h1>
+      <p className="text-lg text-gray-600 dark:text-gray-400">あなたの今日の運勢は？</p>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a
