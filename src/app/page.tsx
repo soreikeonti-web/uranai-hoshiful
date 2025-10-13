@@ -3,9 +3,10 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="mystical-background font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+      <div className="crystal-effect"></div>
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start relative z-10">
         <Image
-          className="dark:invert opacity-80"
+          className="dark:invert opacity-80 drop-shadow-lg"
           src="/next.svg"
           alt="Next.js logo"
           width={180}
@@ -13,8 +14,8 @@ export default function Home() {
           priority
         />
       
-      <h1 className="mystical-text text-4xl font-bold text-center sm:text-left">占いサイトへようこそ！</h1>
-      <p className="text-lg text-white/80 text-center sm:text-left">あなたの今日の運勢は？</p>
+      <h1 className="mystical-text text-5xl sm:text-6xl font-bold text-center sm:text-left leading-tight">占いサイトへようこそ！</h1>
+      <p className="mystical-subtitle text-xl sm:text-2xl text-center sm:text-left font-medium">あなたの今日の運勢は？</p>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a

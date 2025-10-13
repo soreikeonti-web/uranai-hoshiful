@@ -27,7 +27,11 @@ body {
 
 /* 神秘的な背景デザイン */
 .mystical-background {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7209b7 100%);
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, #0c0c2c 0%, #1a0b3d 15%, #2d1b69 35%, #4a2c7a 55%, #6b46c1 75%, #8b5cf6 90%, #a78bfa 100%);
   position: relative;
   overflow: hidden;
 }
@@ -40,15 +44,31 @@ body {
   right: 0;
   bottom: 0;
   background-image: 
-    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
-    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
-    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
-    radial-gradient(2px 2px at 160px 30px, #ddd, transparent);
+    /* 大きな星 */
+    radial-gradient(3px 3px at 100px 150px, #ffd700, transparent),
+    radial-gradient(2px 2px at 300px 80px, #ffffff, transparent),
+    radial-gradient(4px 4px at 500px 200px, #ff69b4, transparent),
+    radial-gradient(2px 2px at 700px 120px, #87ceeb, transparent),
+    radial-gradient(3px 3px at 900px 180px, #dda0dd, transparent),
+    
+    /* 小さな星 */
+    radial-gradient(1px 1px at 150px 300px, #ffffff, transparent),
+    radial-gradient(1px 1px at 250px 250px, #ffd700, transparent),
+    radial-gradient(1px 1px at 350px 350px, #ff69b4, transparent),
+    radial-gradient(1px 1px at 450px 100px, #87ceeb, transparent),
+    radial-gradient(1px 1px at 550px 400px, #dda0dd, transparent),
+    radial-gradient(1px 1px at 650px 150px, #ffffff, transparent),
+    radial-gradient(1px 1px at 750px 350px, #ffd700, transparent),
+    radial-gradient(1px 1px at 850px 200px, #ff69b4, transparent),
+    
+    /* 星座の線 */
+    linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.3) 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, rgba(255,255,255,0.2) 50%, transparent 51%);
+  
   background-repeat: repeat;
-  background-size: 200px 100px;
-  animation: sparkle 20s linear infinite;
-  opacity: 0.6;
+  background-size: 1000px 500px;
+  animation: sparkle 25s linear infinite;
+  opacity: 0.8;
 }
 
 .mystical-background::after {
@@ -58,23 +78,58 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+  background: 
+    radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 70%),
+    radial-gradient(ellipse at 30% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 30%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* クリスタル効果 */
+.mystical-background .crystal-effect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+  animation: crystalShimmer 4s ease-in-out infinite;
   pointer-events: none;
 }
 
 @keyframes sparkle {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-100px); }
+  0% { transform: translateY(0px) translateX(0px); }
+  25% { transform: translateY(-25px) translateX(10px); }
+  50% { transform: translateY(-50px) translateX(-5px); }
+  75% { transform: translateY(-75px) translateX(15px); }
+  100% { transform: translateY(-100px) translateX(0px); }
+}
+
+@keyframes crystalShimmer {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.02); }
 }
 
 /* テキストの神秘的な効果 */
 .mystical-text {
-  background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
-  background-size: 300% 300%;
+  background: linear-gradient(45deg, #ffd700, #ff69b4, #8b5cf6, #06b6d4, #10b981, #f59e0b, #ef4444, #8b5cf6);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.3));
+}
+
+.mystical-subtitle {
+  background: linear-gradient(45deg, #ffffff, #e0e7ff, #c7d2fe, #a5b4fc);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradientShift 3s ease-in-out infinite;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 @keyframes gradientShift {
@@ -85,15 +140,47 @@ body {
 
 /* 神秘的なボタンスタイル */
 .mystical-button {
-  background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  transition: all 0.3s ease;
+  background: linear-gradient(135deg, 
+    rgba(139, 92, 246, 0.2) 0%, 
+    rgba(168, 85, 247, 0.3) 25%, 
+    rgba(236, 72, 153, 0.2) 50%, 
+    rgba(59, 130, 246, 0.3) 75%, 
+    rgba(139, 92, 246, 0.2) 100%);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(139, 92, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mystical-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
 }
 
 .mystical-button:hover {
-  background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0.3));
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, 
+    rgba(139, 92, 246, 0.3) 0%, 
+    rgba(168, 85, 247, 0.4) 25%, 
+    rgba(236, 72, 153, 0.3) 50%, 
+    rgba(59, 130, 246, 0.4) 75%, 
+    rgba(139, 92, 246, 0.3) 100%);
+  box-shadow: 
+    0 12px 40px rgba(139, 92, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.4);
 }
+
+.mystical-button:hover::before {
+  left: 100%;
+} 
