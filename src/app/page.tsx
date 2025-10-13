@@ -1,95 +1,51 @@
-import Image from "next/image";
+import { client } from "@/sanity/client"; // ウェイターをインポート
 
-export default function Home() {
+// Sanityから受け取るデータの型を定義
+interface Fortune {
+  _id: string;
+  date: string;
+  content: string;
+  author?: string;
+}
+
+// Sanityからデータを取得する関数（ウェイターの仕事）
+async function getFortune() {
+  // これが注文書（クエリ）です
+  const query = `*[_type == "fortune"] | order(date desc)[0]`;
+  const data = await client.fetch<Fortune>(query);
+  return data;
+}
+
+// これがトップページ本体です
+export default async function Home() {
+  const fortune = await getFortune(); // ウェイターに仕事をお願いする
+
   return (
-    <div className="mystical-background font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <div className="crystal-effect"></div>
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start relative z-10">
-        <Image
-          className="dark:invert opacity-80 drop-shadow-lg"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-      
-      <h1 className="mystical-text text-5xl sm:text-6xl font-bold text-center sm:text-left leading-tight">占いサイトへようこそ！</h1>
-      <p className="mystical-subtitle text-xl sm:text-2xl text-center sm:text-left font-medium">あなたの今日の運勢は？</p>
+    <main>
+      {/* ここから下は、AIが作ってくれたデザインを活かしています */}
+      <div className="mystical-background font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-4">
+        <div className="crystal-effect" />
+        <div className="row-start-2 items-center text-center relative z-10">
+          <h1 className="mystical-text text-5xl md:text-6xl font-bold mb-4">
+            今日の運勢
+          </h1>
+          
+          {/* ここで占いデータを表示します！ */}
+          {fortune ? (
+            <div className="bg-black bg-opacity-30 backdrop-blur-md p-6 rounded-lg shadow-lg">
+              <p className="mystical-subtitle text-xl md:text-2xl text-white mb-2">
+                {fortune.date}
+              </p>
+              <p className="text-lg text-gray-200 whitespace-pre-wrap">
+                {fortune.content}
+              </p>
+            </div>
+          ) : (
+            <p>まだ今日の運勢が届いていないようです。</p>
+          )}
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="mystical-button rounded-full transition-colors flex items-center justify-center text-white gap-2 font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            占いを始める
-          </a>
-          <a
-            className="mystical-button rounded-full transition-colors flex items-center justify-center text-white font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            運勢を確認
-          </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center relative z-10">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4 text-white/70 hover:text-white transition-colors"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          学習
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4 text-white/70 hover:text-white transition-colors"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          例
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4 text-white/70 hover:text-white transition-colors"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Next.js →
-        </a>
-      </footer>
-    </div>
+      </div>
+    </main>
   );
 }
