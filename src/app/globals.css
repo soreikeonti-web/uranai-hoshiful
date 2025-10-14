@@ -30,6 +30,70 @@ body {
   min-height: 100vh;
 }
 
+.mystical-background::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    /* 大きな星 */
+    radial-gradient(3px 3px at 100px 150px, #ffd700, transparent),
+    radial-gradient(2px 2px at 300px 80px, #ffffff, transparent),
+    radial-gradient(4px 4px at 500px 200px, #ff69b4, transparent),
+    radial-gradient(2px 2px at 700px 120px, #87ceeb, transparent),
+    radial-gradient(3px 3px at 900px 180px, #dda0dd, transparent),
+    radial-gradient(3px 3px at 200px 300px, #ffd700, transparent),
+    radial-gradient(2px 2px at 400px 50px, #ffffff, transparent),
+    radial-gradient(4px 4px at 600px 250px, #ff69b4, transparent),
+    
+    /* 小さな星 */
+    radial-gradient(1px 1px at 150px 300px, #ffffff, transparent),
+    radial-gradient(1px 1px at 250px 250px, #ffd700, transparent),
+    radial-gradient(1px 1px at 350px 350px, #ff69b4, transparent),
+    radial-gradient(1px 1px at 450px 100px, #87ceeb, transparent),
+    radial-gradient(1px 1px at 550px 400px, #dda0dd, transparent),
+    radial-gradient(1px 1px at 650px 150px, #ffffff, transparent),
+    radial-gradient(1px 1px at 750px 350px, #ffd700, transparent),
+    radial-gradient(1px 1px at 850px 200px, #ff69b4, transparent),
+    radial-gradient(1px 1px at 950px 450px, #87ceeb, transparent),
+    
+    /* 星座の線 */
+    linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.2) 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, rgba(255,255,255,0.15) 50%, transparent 51%);
+  
+  background-repeat: repeat;
+  background-size: 1000px 500px;
+  animation: sparkle 25s linear infinite;
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mystical-background::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 70%),
+    radial-gradient(ellipse at 30% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 30%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes sparkle {
+  0% { transform: translateY(0px) translateX(0px); }
+  25% { transform: translateY(-25px) translateX(10px); }
+  50% { transform: translateY(-50px) translateX(-5px); }
+  75% { transform: translateY(-75px) translateX(15px); }
+  100% { transform: translateY(-100px) translateX(0px); }
+}
+
 @keyframes gradient {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -66,6 +130,32 @@ body {
   animation: gradient 4s ease-in-out infinite;
   text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
   filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.3));
+  position: relative;
+}
+
+.mystical-text::before {
+  content: '🔮';
+  position: absolute;
+  left: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8em;
+  animation: crystalFloat 3s ease-in-out infinite;
+}
+
+.mystical-text::after {
+  content: '✨';
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8em;
+  animation: crystalFloat 3s ease-in-out infinite 1.5s;
+}
+
+@keyframes crystalFloat {
+  0%, 100% { transform: translateY(-50%) scale(1); opacity: 0.8; }
+  50% { transform: translateY(-50%) scale(1.2); opacity: 1; }
 }
 
 .mystical-subtitle {
@@ -76,24 +166,55 @@ body {
   -webkit-text-fill-color: transparent;
   animation: gradient 3s ease-in-out infinite;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+
+.mystical-subtitle::before {
+  content: '🌟';
+  position: absolute;
+  left: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7em;
+  animation: starTwinkle 2s ease-in-out infinite;
+}
+
+.mystical-subtitle::after {
+  content: '🌙';
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7em;
+  animation: starTwinkle 2s ease-in-out infinite 1s;
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.6; transform: translateY(-50%) rotate(0deg); }
+  50% { opacity: 1; transform: translateY(-50%) rotate(180deg); }
 }
 
 /* 神秘的なボタンスタイル */
 .mystical-button {
   background: linear-gradient(135deg, 
-    rgba(139, 92, 246, 0.2) 0%, 
-    rgba(168, 85, 247, 0.3) 25%, 
-    rgba(236, 72, 153, 0.2) 50%, 
-    rgba(59, 130, 246, 0.3) 75%, 
-    rgba(139, 92, 246, 0.2) 100%);
+    rgba(139, 92, 246, 0.3) 0%, 
+    rgba(168, 85, 247, 0.4) 25%, 
+    rgba(236, 72, 153, 0.3) 50%, 
+    rgba(59, 130, 246, 0.4) 75%, 
+    rgba(139, 92, 246, 0.3) 100%);
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.4);
   box-shadow: 
-    0 8px 32px rgba(139, 92, 246, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 8px 32px rgba(139, 92, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(255, 215, 0, 0.3);
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .mystical-button::before {
@@ -103,24 +224,92 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transition: left 0.5s;
+}
+
+.mystical-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  transition: all 0.3s ease;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
 }
 
 .mystical-button:hover {
   background: linear-gradient(135deg, 
-    rgba(139, 92, 246, 0.3) 0%, 
-    rgba(168, 85, 247, 0.4) 25%, 
-    rgba(236, 72, 153, 0.3) 50%, 
-    rgba(59, 130, 246, 0.4) 75%, 
-    rgba(139, 92, 246, 0.3) 100%);
+    rgba(139, 92, 246, 0.4) 0%, 
+    rgba(168, 85, 247, 0.5) 25%, 
+    rgba(236, 72, 153, 0.4) 50%, 
+    rgba(59, 130, 246, 0.5) 75%, 
+    rgba(139, 92, 246, 0.4) 100%);
   box-shadow: 
-    0 12px 40px rgba(139, 92, 246, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  transform: translateY(-3px) scale(1.02);
-  border-color: rgba(255, 255, 255, 0.4);
+    0 15px 50px rgba(139, 92, 246, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 0 30px rgba(255, 215, 0, 0.5);
+  transform: translateY(-5px) scale(1.05);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 .mystical-button:hover::before {
   left: 100%;
+}
+
+.mystical-button:hover::after {
+  width: 100%;
+  height: 100%;
+}
+
+.mystical-button:active {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 8px 25px rgba(139, 92, 246, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+/* 特別なメインボタンスタイル */
+.main-fortune-button {
+  background: linear-gradient(135deg, 
+    rgba(255, 215, 0, 0.3) 0%, 
+    rgba(255, 69, 0, 0.4) 25%, 
+    rgba(255, 20, 147, 0.3) 50%, 
+    rgba(138, 43, 226, 0.4) 75%, 
+    rgba(255, 215, 0, 0.3) 100%);
+  border: 3px solid rgba(255, 215, 0, 0.5);
+  box-shadow: 
+    0 10px 40px rgba(255, 215, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 0 25px rgba(255, 215, 0, 0.6);
+  font-size: 1.1em;
+  padding: 12px 24px;
+  animation: buttonPulse 2s ease-in-out infinite;
+}
+
+@keyframes buttonPulse {
+  0%, 100% { 
+    box-shadow: 
+      0 10px 40px rgba(255, 215, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      0 0 25px rgba(255, 215, 0, 0.6);
+  }
+  50% { 
+    box-shadow: 
+      0 15px 50px rgba(255, 215, 0, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      0 0 35px rgba(255, 215, 0, 0.8);
+  }
+}
+
+.main-fortune-button:hover {
+  animation: none;
+  box-shadow: 
+    0 20px 60px rgba(255, 215, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 0 40px rgba(255, 215, 0, 1);
 }
