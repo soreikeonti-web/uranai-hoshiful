@@ -16,8 +16,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className="h-full">
-      {/* ★★★ bodyにクラスを追加し、背景を全体に適用 ★★★ */}
       <body className={`${inter.className} h-full mystical-background`}>
+        <div className="crystal-effect"></div>
         {children}
       </body>
     </html>
