@@ -1,48 +1,40 @@
-import { client } from "@/sanity/client"; // ウェイターをインポート
+import { client } from "@/sanity/client";
 
-// Sanityから受け取るデータの型を定義
 interface Fortune {
   _id: string;
   date: string;
   content: string;
-  author?: string;
 }
 
-// Sanityからデータを取得する関数（ウェイターの仕事）
 async function getFortune() {
-  // これが注文書（クエリ）です
   const query = `*[_type == "fortune"] | order(date desc)[0]`;
   const data = await client.fetch<Fortune>(query);
   return data;
 }
 
-// これがトップページ本体です
 export default async function Home() {
-  const fortune = await getFortune(); // ウェイターに仕事をお願いする
+  const fortune = await getFortune();
 
   return (
-    // ★★★ Flexboxを使って中央揃えするように修正しました！ ★★★
-    <main className="mystical-background font-sans flex flex-col items-center justify-center min-h-screen p-4 relative">
-      <div className="crystal-effect" />
-      <div className="text-center relative z-10">
-        <h1 className="mystical-text text-5xl md:text-6xl font-bold mb-4">
+    // ★★★ 最もシンプルで確実な中央揃えのコード ★★★
+    <main className="flex flex-col items-center justify-center min-h-full p-4 text-center">
+      <div className="relative z-10">
+        <h1 className="mystical-text text-5xl md:text-6xl font-bold mb-8">
           今日の運勢
         </h1>
         
-        {/* ここで占いデータを表示します！ */}
         {fortune ? (
-          <div className="bg-black bg-opacity-30 backdrop-blur-md p-6 rounded-lg shadow-lg">
-            <p className="mystical-subtitle text-xl md:text-2xl text-white mb-2">
+          <div className="bg-black bg-opacity-40 backdrop-blur-md p-8 rounded-2xl shadow-lg max-w-md mx-auto">
+            <p className="text-xl md:text-2xl text-gray-300 mb-4">
               {fortune.date}
             </p>
-            <p className="text-lg text-gray-200 whitespace-pre-wrap">
+            <p className="text-lg text-white whitespace-pre-wrap leading-relaxed">
               {fortune.content}
             </p>
           </div>
         ) : (
           <p>まだ今日の運勢が届いていないようです。</p>
         )}
-
       </div>
     </main>
   );
