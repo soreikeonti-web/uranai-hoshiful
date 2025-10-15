@@ -4,6 +4,7 @@ interface Fortune {
   _id: string;
   date: string;
   content: string;
+  author?: string;
 }
 
 async function getFortune() {
