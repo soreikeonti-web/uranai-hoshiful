@@ -17,8 +17,9 @@ export default function RootLayout({
   return (
     <html lang="ja" className="h-full">
       <body className={`${inter.className} h-full mystical-background`}>
-        <div className="crystal-effect"></div>
-        <div className="max-w-5xl mx-auto px-4">{children}</div>
+        <main className="max-w-5xl mx-auto px-4 py-8 text-center relative z-10">
+          {children}
+        </main>
       </body>
     </html>
   );

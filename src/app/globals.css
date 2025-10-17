@@ -28,22 +28,51 @@ body {
   min-height: 100vh;
 }
 
-/* 星の背景 */
+/* 星空レイヤー */
 .mystical-background::before {
-  content: '';
+  content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
+  background-image:
+    radial-gradient(3px 3px at 100px 150px, #ffd700, transparent),
+    radial-gradient(2px 2px at 300px 80px, #ffffff, transparent),
+    radial-gradient(4px 4px at 500px 200px, #ff69b4, transparent),
+    radial-gradient(2px 2px at 700px 120px, #87ceeb, transparent),
+    radial-gradient(3px 3px at 900px 180px, #dda0dd, transparent),
+    radial-gradient(3px 3px at 200px 300px, #ffd700, transparent),
+    radial-gradient(2px 2px at 400px 50px, #ffffff, transparent),
+    radial-gradient(4px 4px at 600px 250px, #ff69b4, transparent),
+    radial-gradient(1px 1px at 150px 300px, #ffffff, transparent),
+    radial-gradient(1px 1px at 250px 250px, #ffd700, transparent),
+    radial-gradient(1px 1px at 350px 350px, #ff69b4, transparent),
+    radial-gradient(1px 1px at 450px 100px, #87ceeb, transparent),
+    radial-gradient(1px 1px at 550px 400px, #dda0dd, transparent),
+    radial-gradient(1px 1px at 650px 150px, #ffffff, transparent),
+    radial-gradient(1px 1px at 750px 350px, #ffd700, transparent),
+    radial-gradient(1px 1px at 850px 200px, #ff69b4, transparent),
+    radial-gradient(1px 1px at 950px 450px, #87ceeb, transparent);
   background-repeat: repeat;
   background-size: 1000px 500px;
   animation: sparkle 25s linear infinite;
-  opacity: 0.8;
+  opacity: 0.7;
   pointer-events: none;
   z-index: 1;
 }
 
+/* 奥行き・ぼかしレイヤー */
+.mystical-background::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 70%),
+    radial-gradient(ellipse at 30% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 30%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* アニメーション */
 @keyframes sparkle {
   0% { transform: translateY(0px) translateX(0px); }
   50% { transform: translateY(-50px) translateX(-5px); }
@@ -55,17 +84,3 @@ body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
-/* 神秘的なテキストアニメーション */
-.mystical-text {
-  background: linear-gradient(45deg, #ffd700, #ff69b4, #8b5cf6, #06b6d4, #10b981, #f59e0b, #ef4444, #8b5cf6);
-  background-size: 400% 400%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradient 4s ease-in-out infinite;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.3));
-}
-
-/* mystical-subtitle, mystical-button, main-fortune-button は前のままでOK */
