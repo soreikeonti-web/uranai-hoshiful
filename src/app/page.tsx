@@ -18,7 +18,7 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-4 text-center relative z-10">
-      <div className="w-full max-w-3xl">
+      <div className="w-full max-w-3xl mx-auto">
         {/* メインタイトル */}
         <div className="mb-12">
           <h1 className="mystical-text text-5xl sm:text-6xl md:text-7xl font-bold mb-6 relative">
