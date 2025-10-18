@@ -10,8 +10,8 @@ export default defineConfig({
   icon: () => '🔮',
 
   // 環境変数の設定を統一
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
+  dataset: process.env.SANITY_STUDIO_DATASET!,
 
   plugins: [
     structureTool({
@@ -20,10 +20,12 @@ export default defineConfig({
           .title('🔮 占いサイト管理')
           .items([
             S.listItem()
+              .id('fortune-list') // 👈 IDを追加
               .title('📅 今日の占い')
               .child(S.documentTypeList('fortune').title('占い一覧')),
             S.divider(),
             S.listItem()
+              .id('vision-custom') // 👈 IDを追加
               .title('🔍 Vision')
               .child(S.component().component(() => null).title('Vision')),
           ]),
@@ -34,5 +36,4 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
-
 })
