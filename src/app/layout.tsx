@@ -11,15 +11,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="ja" className="h-full">
       <body className={`${inter.className} h-full mystical-background`}>
-        <main className="max-w-5xl mx-auto px-4 py-8 text-center relative z-10 flex flex-col items-center justify-center min-h-screen">
-          {children}
-        </main>
+        {children}
       </body>
     </html>
   );
