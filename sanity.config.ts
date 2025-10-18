@@ -9,8 +9,8 @@ export default defineConfig({
   name: 'default', 
   title: '🔮 占いサイト管理画面',
   
-  projectId: 'nfpbik8n',
-  dataset: 'production',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
+  dataset: process.env.SANITY_STUDIO_DATASET!,
   
   plugins: [
     structureTool(),
